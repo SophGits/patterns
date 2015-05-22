@@ -7,21 +7,32 @@ function Person(name, height, dialogue, colour){
   this.dialogue = dialogue || "Greetings. I don't know you, but..." ;
   this.colour = colour;
 
-  this.speak = function(){
-    return this.dialogue + ". My name is " + this.name + " and my favourite colour is " + this.colour;
-  }
+  this.speech =  this.dialogue + ". My name is " + this.name + " and my favourite colour is " + this.colour;
 
-  var imageBox = "<div class='person-box'><div class='person' style='height: " + this.height + "'></div></div>";
+  var imageBox = "<div class='person-box'><div class='person " + name + "' style='height: " + this.height + "'><h1>"+this.name+"</h1></div></div>";
   $('.people').append(imageBox);
+
+  this.speak = function(){
+    var domPerson = $('body').find('.person.' + this.name);
+    domPerson.append('<span class="bubble">'+ this.speech +'</span>');
+  }
 }
 
-var name = $('input[name="name"]').val();
-var height = $('input[name="height"]').val();
-var dialogue = $('input[name="dialogue"]').val();
-var dialogue = $('input[name="dialogue"]').val();
-var colour = $('input[name="colour"]').val();
+Person.prototype.grow = function(){
+  console.log("foo");
+  var thisPerson = $('.person.'+this.name);
+  thisPerson.slideToggle();
+}
 
+$(document).ready(function(){
 
-var jenny = new Person("Jenny", 140, "Yo", "blue");
+  $('button').on("click", function(){
+    var name = $('input[name="name"]').val();
+    var height = $('input[name="height"]').val();
+    var dialogue = $('input[name="dialogue"]').val();
+    var colour = $('input[name="colour"]').val();
 
-var blank = new Person();
+    new Person(name, height, dialogue, colour);
+  });
+
+})

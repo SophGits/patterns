@@ -10,6 +10,10 @@ input{
   height: 250px;
   width: 150px;
 }
+.person-box h2{
+  font-size: 30px;
+  color: blue;
+}
 .person-box .person{
   position: absolute;
   width: 150px;
@@ -17,9 +21,26 @@ input{
   left: 0;
   max-height: 450px;
   border: 1px solid lightgray;
-  margin: 10px;
+  margin: 40px;
   background: url("http://cachedtech.com/wp-content/uploads/2012/10/xkcd.jpg");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: auto 100%;
+}
+.person h1{
+  position: absolute;
+  font-size: 14px;
+  bottom: -30px;
+  left: 5px;
+  color: red;
+}
+span.bubble{
+  background: aliceblue;
+  width: 100px;
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  font-size: 16px;
+  overflow: hidden;
+  border-radius: 50%;
 }
