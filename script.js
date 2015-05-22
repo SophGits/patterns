@@ -2,26 +2,36 @@
 
 
 function Person(name, height, dialogue, colour){
-  this.name = name || "Mystery Person";
+  this.name = name || "MysteryPerson";
   this.height = height || 150;
   this.dialogue = dialogue || "Greetings. I don't know you, but..." ;
-  this.colour = colour;
-
-  this.speech =  this.dialogue + ". My name is " + this.name + " and my favourite colour is " + this.colour;
+  this.colour = colour || "None of your business";
 
   var imageBox = "<div class='person-box'><div class='person " + name + "' style='height: " + this.height + "'><h1>"+this.name+"</h1></div></div>";
   $('.people').append(imageBox);
 
-  this.speak = function(){
-    var domPerson = $('body').find('.person.' + this.name);
-    domPerson.append('<span class="bubble">'+ this.speech +'</span>');
-  }
+   //can I put a fn in here?
+   this.bar = function(){
+    console.log(this.colour);
+   }
 }
 
-Person.prototype.grow = function(){
-  console.log("foo");
+Person.prototype.speak = function(domPerson){
+  this.speech =  this.dialogue + ". My name is " + this.name + " and my favourite colour is " + this.colour;
+  domPerson.append('<span class="bubble">'+ this.speech +'</span>');
+}
+
+Person.prototype.listen = function(){
+  var that = this;
+  var domPerson = $('.person.' + this.name);
+  domPerson.mouseover(function(){
+    that.speak(domPerson);
+  });
+}
+
+Person.prototype.grow = function(time){
   var thisPerson = $('.person.'+this.name);
-  thisPerson.slideToggle();
+  thisPerson.slideToggle(time);
 }
 
 $(document).ready(function(){
@@ -32,7 +42,12 @@ $(document).ready(function(){
     var dialogue = $('input[name="dialogue"]').val();
     var colour = $('input[name="colour"]').val();
 
-    new Person(name, height, dialogue, colour);
+    var newbie = new Person(name, height, dialogue, colour);
+    newbie.listen();
+    newbie.grow(0);
+    newbie.grow(400);
+
   });
+
 
 })
