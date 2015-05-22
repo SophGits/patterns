@@ -1,0 +1,25 @@
+input{
+  display: block;
+}
+.people{
+  width: 100%;
+}
+.person-box{
+  display: inline-block;
+  position: relative;
+  height: 250px;
+  width: 150px;
+}
+.person-box .person{
+  position: absolute;
+  width: 150px;
+  bottom: 0;
+  left: 0;
+  max-height: 450px;
+  border: 1px solid lightgray;
+  margin: 10px;
+  background: url("http://cachedtech.com/wp-content/uploads/2012/10/xkcd.jpg");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: auto 100%;
+}
