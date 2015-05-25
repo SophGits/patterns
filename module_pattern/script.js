@@ -1,40 +1,32 @@
-(function( window, undefined ) {
-
-  function Calculate() {
-
-    this.add = function add(num1, num2) {
-      this.answer(num1 + num2)
-    };
-
-    this.subtract = function subtract(num1, num2) {
-      this.answer(num1 - num2)
-    };
-
-    this.multiply = function multiply(num1, num2) {
-      this.answer(num1 * num2)
-    };
-
-    this.divide = function divide(num1, num2) {
-      this.answer(num1/num2)
-    };
-
-    this.answer = function(ans){
-      $('.answer').html(ans);
-    }
-
+var Calculator = (function(){
+  function add(x,y){
+    return x+y;
   }
 
-  // expose access to the constructor
-  window.Calculate = Calculate;
+  function subtract(x,y){
+    return x-y;
+  }
 
-})( window );
+  function multiply(x,y){
+    return x*y;
+  }
+
+  function divide(x,y){
+    return x/y;
+  }
+
+  return{
+    add: add,
+    subtract: subtract,
+    multiply: multiply,
+    divide: divide
+  }
+})();
 
 
 $(document).ready(function(){
 
   $('button').on("click", function(){
-
-    var calculate = new Calculate();
 
     var firstNum = $('input[name="input1"]').val();
     firstNum = parseInt(firstNum);
@@ -44,16 +36,16 @@ $(document).ready(function(){
 
     switch( action ){
       case "plus":
-        calculate.add(firstNum, secondNum);
+        $('.answer').html(Calculator.add(firstNum, secondNum));
         break;
       case "subtract":
-        calculate.subtract(firstNum, secondNum);
+        $('.answer').html(Calculator.subtract(firstNum, secondNum));
         break;
       case "multiply":
-        calculate.multiply(firstNum, secondNum);
+        $('.answer').html(Calculator.multiply(firstNum, secondNum));
         break;
       case "divide":
-        calculate.divide(firstNum, secondNum);
+        $('.answer').html(Calculator.divide(firstNum, secondNum));
         break;
     }
 
