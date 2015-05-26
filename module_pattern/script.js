@@ -54,3 +54,5 @@ $(document).ready(function(){
 });
 
 
+// http://stackoverflow.com/questions/5647258/how-to-use-revealing-module-pattern-in-javascript
+// http://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript
